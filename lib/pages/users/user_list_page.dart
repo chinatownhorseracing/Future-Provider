@@ -12,6 +12,34 @@ class UserListPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('User List'),
       ),
+      // body: switch (userList) {
+      //   AsyncData(value: final users) => ListView.separated(
+      //     itemCount: users.length,
+      //     separatorBuilder: (BuildContext context, int index) {
+      //       return const Divider();
+      //     },
+      //     itemBuilder: (BuildContext context, int index) {
+      //       final user = users[index];
+      //       return ListTile(
+      //         leading: CircleAvatar(
+      //           child: Text(
+      //             user.id.toString(),
+      //           ),
+      //         ),
+      //         title: Text(user.name),
+      //       );
+      //     },
+      //   ),
+      //   AsyncError(error: final e) => Center(
+      //     child: Text(
+      //       e.toString(),
+      //       style: TextStyle(fontSize: 20, color: Colors.red),
+      //     ),
+      //   ),
+      //   _ => const Center(
+      //     child: CircularProgressIndicator(),
+      //   ),
+      // },
       body: userList.when(
         data: (users) {
           return ListView.separated(
@@ -33,9 +61,11 @@ class UserListPage extends ConsumerWidget {
           );
         },
         error: (e, st) {
-          return Text(
-            e.toString(),
-            style: TextStyle(fontSize: 20, color: Colors.red),
+          return Center(
+            child: Text(
+              e.toString(),
+              style: TextStyle(fontSize: 20, color: Colors.red),
+            ),
           );
         },
         loading: () => const Center(

@@ -7,6 +7,7 @@ final userListProvider = FutureProvider.autoDispose<List<User>>((ref) async {
     print('[userListProvider] disposed');
   });
   final response = await ref.watch(dioProvider).get('/users');
+  // throw 'Fail to fetch user list';
   final List userList = response.data;
   final users = [for (final user in userList) User.fromJson(user)];
   return users;
